@@ -121,17 +121,17 @@ export function HaatCheckout({
               </div>
             </div>
 
-            {/* Change-to-wallet option (when paying cash) */}
+            {/* Change-to-wallet option (when paying cash) - Pre-declaration model */}
             {walletActivated && (
               <div className="mt-3 pt-3 border-t border-gray-100">
                 <div className="flex items-start gap-2.5">
                   <div className="flex-1">
                     <div className="text-xs font-semibold text-haat-dark mb-0.5 flex items-center gap-1">
                       <Coins className="w-3.5 h-3.5 text-haat-red" />
-                      Receive change as HaatoPay balance
+                      Pay with a larger bill — keep change in wallet
                     </div>
                     <div className="text-[10px] text-gray-500">
-                      Pay ₪{cashReceived} → keep ₪{change} in your wallet
+                      Pre-declare. Courier takes the bill, no change handling.
                     </div>
                   </div>
                   <button
@@ -145,6 +145,31 @@ export function HaatCheckout({
                     }`} />
                   </button>
                 </div>
+
+                {changeToWallet && (
+                  <div className="mt-3 p-3 bg-haat-cream/50 rounded-lg">
+                    <div className="text-[10px] uppercase tracking-wider text-gray-500 mb-2 font-bold">
+                      I'll pay with
+                    </div>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {[100, 200, 500].map(bill => (
+                        <div
+                          key={bill}
+                          className={`text-center py-2 rounded-lg border-2 ${
+                            bill === 100 ? "border-haat-red bg-white" : "border-gray-200 bg-white opacity-60"
+                          }`}
+                        >
+                          <div className="text-sm font-bold text-haat-dark">₪{bill}</div>
+                          <div className="text-[9px] text-gray-500">→ ₪{bill - total} to wallet</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-2 flex items-center gap-1.5 text-[10px] text-gray-600">
+                      <CheckCircle2 className="w-3 h-3 text-green-600" />
+                      <span>Courier will take ₪100 — no change needed</span>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -266,7 +291,7 @@ export function WalletEmpty({ setScreen }: any) {
         <div className="w-full space-y-2 mb-6 max-w-xs">
           {[
             { Icon: Gift, text: "Get ₪5 instantly. No deposit needed." },
-            { Icon: Percent, text: "Earn 3% back on every HAAT order." },
+            { Icon: Percent, text: "Earn 3% back — first 90 days, up to ₪50." },
             { Icon: Users, text: "Create wallets for your kids." },
           ].map(({ Icon, text }, i) => (
             <div key={i} className="flex items-center gap-3 bg-white/5 rounded-xl px-4 py-3 backdrop-blur">
@@ -338,7 +363,7 @@ export function Onboarding1({ phoneNumber, setPhoneNumber, setScreen }: any) {
         <div className="bg-haat-cream/50 rounded-xl p-3 flex gap-2 mt-6">
           <Lock className="w-4 h-4 text-haat-red flex-shrink-0 mt-0.5" />
           <p className="text-[11px] text-gray-700 leading-relaxed">
-            <strong className="text-haat-dark">Why so little?</strong> This is Tier 0 KYC — enough to receive ₪5, earn cashback, and pay in HAAT. Higher limits require full ID later.
+            <strong className="text-haat-dark">Why so little?</strong> This is Tier 0 — a closed-loop wallet (HAAT-only spend, no withdrawal). ₪400 cap. AML-exempt under Israeli law. Upgrade to full KYC anytime for higher limits.
           </p>
         </div>
       </div>
