@@ -14,7 +14,7 @@ import {
   Onboarding1, Onboarding2, Onboarding3, OnboardingSuccess
 } from "./components2";
 import {
-  WalletDashboard, WalletHistory, WalletTopUp,
+  WalletDashboard, WalletHistory, WalletTopUp, WalletTransfer,
   FamilyWalletIntro, FamilyWalletCreate, FamilyWalletSuccess
 } from "./components3";
 
@@ -34,6 +34,7 @@ type Screen =
   | "wallet-dashboard"
   | "wallet-history"
   | "wallet-topup"
+  | "wallet-transfer"
   | "wallet-family"
   | "wallet-family-create"
   | "wallet-family-success"
@@ -262,6 +263,9 @@ export default function HaatoPayMockup() {
             )}
             {screen === "wallet-topup" && (
               <WalletTopUp setScreen={setScreen} />
+            )}
+            {screen === "wallet-transfer" && (
+              <WalletTransfer setScreen={setScreen} />
             )}
             {screen === "wallet-family" && (
               <FamilyWalletIntro

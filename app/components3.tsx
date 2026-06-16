@@ -62,6 +62,18 @@ export function WalletDashboard({
             <span className="text-[10px] font-semibold">Pay in HAAT</span>
           </button>
           <button
+            onClick={() => setScreen("wallet-transfer")}
+            className="flex flex-col items-center gap-1.5 relative"
+          >
+            <div className="w-11 h-11 rounded-full bg-white/15 backdrop-blur flex items-center justify-center">
+              <ArrowUpRight className="w-5 h-5" />
+            </div>
+            <span className="text-[10px] font-semibold">Transfer</span>
+            <div className="absolute -top-1 right-0 px-1 py-0 bg-haat-yellow rounded-full">
+              <span className="text-[7px] text-haat-dark font-bold">P4</span>
+            </div>
+          </button>
+          <button
             onClick={() => setScreen("wallet-family")}
             className="flex flex-col items-center gap-1.5"
           >
@@ -116,6 +128,24 @@ export function WalletDashboard({
           </div>
         </div>
       )}
+
+      {/* Virtual Card coming soon */}
+      <div className="px-5 mt-3">
+        <div className="bg-haat-dark rounded-2xl p-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+              <CreditCard className="w-5 h-5 text-haat-yellow" />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-white">Virtual Visa card</div>
+              <div className="text-[10px] text-gray-400">Pay everywhere — coming Phase 2</div>
+            </div>
+          </div>
+          <div className="px-2 py-0.5 bg-haat-yellow/20 rounded-full">
+            <span className="text-[9px] text-haat-yellow font-bold uppercase tracking-wider">Soon</span>
+          </div>
+        </div>
+      </div>
 
       {/* Recent activity */}
       <div className="px-5 mt-4 flex-1 overflow-y-auto">
@@ -212,10 +242,10 @@ export function WalletHistory({ transactions, setScreen }: any) {
 // ============================================
 export function WalletTopUp({ setScreen }: any) {
   const methods = [
-    { Icon: CreditCard, name: "Credit / debit card", desc: "Instant", available: true },
-    { Icon: Smartphone, name: "Bit transfer", desc: "Instant · Free", available: true },
-    { Icon: Building2, name: "Bank transfer", desc: "1 business day", available: true },
-    { Icon: Banknote, name: "Cash via courier", desc: "Coming soon · Phase 3", available: false },
+    { Icon: CreditCard, name: "Credit / debit card", desc: "Instant", phase: "MVP", available: true },
+    { Icon: Smartphone, name: "Bit transfer", desc: "Instant · Free", phase: "Phase 2", available: false },
+    { Icon: Building2, name: "Bank transfer", desc: "1 business day", phase: "Phase 2", available: false },
+    { Icon: Banknote, name: "Cash via courier", desc: "Cash-in at delivery", phase: "Phase 4", available: false },
   ];
 
   return (
@@ -241,25 +271,31 @@ export function WalletTopUp({ setScreen }: any) {
               key={i}
               disabled={!m.available}
               className={`w-full flex items-center gap-3 p-3.5 rounded-xl border ${
-                m.available ? "bg-white border-gray-200 active:scale-[0.99]" : "bg-gray-50 border-gray-100 opacity-50"
+                m.available ? "bg-white border-haat-red/30 active:scale-[0.99]" : "bg-gray-50 border-gray-100 opacity-60"
               }`}
             >
-              <div className="w-10 h-10 rounded-lg bg-haat-cream flex items-center justify-center">
-                <m.Icon className="w-5 h-5 text-haat-red" />
+              <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${m.available ? "bg-haat-cream" : "bg-gray-100"}`}>
+                <m.Icon className={`w-5 h-5 ${m.available ? "text-haat-red" : "text-gray-400"}`} />
               </div>
               <div className="flex-1 text-left">
-                <div className="font-semibold text-sm text-haat-dark">{m.name}</div>
-                <div className="text-[11px] text-gray-500">{m.desc}</div>
+                <div className={`font-semibold text-sm ${m.available ? "text-haat-dark" : "text-gray-500"}`}>{m.name}</div>
+                <div className="text-[11px] text-gray-400">{m.desc}</div>
               </div>
-              {m.available && <ChevronRight className="w-4 h-4 text-gray-300" />}
+              <div className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                m.phase === "MVP" ? "bg-haat-red text-white" :
+                m.phase === "Phase 2" ? "bg-gray-200 text-gray-600" :
+                "bg-gray-100 text-gray-400"
+              }`}>
+                {m.phase}
+              </div>
             </button>
           ))}
         </div>
 
-        <div className="mt-6 bg-haat-cream/50 rounded-xl p-3 flex gap-2">
+        <div className="mt-5 bg-haat-cream/50 rounded-xl p-3 flex gap-2">
           <Shield className="w-4 h-4 text-haat-red flex-shrink-0 mt-0.5" />
           <p className="text-[11px] text-gray-700 leading-relaxed">
-            <strong className="text-haat-dark">Note:</strong> Top-up launches in Phase 2 (Months 3-6). MVP focuses on welcome bonus + cashback to bootstrap balance organically.
+            <strong className="text-haat-dark">MVP (Months 0-3):</strong> Credit/debit card top-up only. Bit, bank transfer, and cash-via-courier roll out in later phases.
           </p>
         </div>
       </div>
@@ -268,8 +304,65 @@ export function WalletTopUp({ setScreen }: any) {
 }
 
 // ============================================
-// FAMILY WALLET INTRO
+// WALLET TRANSFER (P2P - Coming Phase 4)
 // ============================================
+export function WalletTransfer({ setScreen }: any) {
+  return (
+    <div className="h-full flex flex-col bg-white">
+      <div className="bg-white px-5 py-3 flex items-center gap-3 border-b border-gray-100">
+        <button onClick={() => setScreen("wallet-dashboard")}>
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        <h2 className="font-bold text-base text-haat-dark">Transfer</h2>
+        <div className="ml-auto px-2 py-0.5 bg-haat-yellow/20 rounded-full">
+          <span className="text-[9px] text-haat-red font-bold uppercase tracking-wider">Phase 4</span>
+        </div>
+      </div>
+
+      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
+        <div className="w-20 h-20 rounded-3xl bg-haat-cream flex items-center justify-center mb-5">
+          <ArrowUpRight className="w-10 h-10 text-haat-red" />
+        </div>
+
+        <h2 className="font-serif text-2xl font-bold text-haat-dark mb-2">P2P Transfers</h2>
+        <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
+          Send money to any HAAT user. Receive from family. Available in Phase 4 (Months 9-12) after full KYC rollout.
+        </p>
+
+        <div className="w-full space-y-2 mb-6">
+          {[
+            { label: "Send to any HAAT user", phase: "Phase 4" },
+            { label: "Receive from family", phase: "Phase 4" },
+            { label: "Requires Tier 1 KYC", phase: "Compliance" },
+          ].map((item, i) => (
+            <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+              <span className="text-sm text-gray-600">{item.label}</span>
+              <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                item.phase === "Compliance" ? "bg-green-100 text-green-700" : "bg-gray-200 text-gray-500"
+              }`}>{item.phase}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="w-full bg-haat-cream/50 rounded-xl p-3 flex gap-2 text-left">
+          <Shield className="w-4 h-4 text-haat-red flex-shrink-0 mt-0.5" />
+          <p className="text-[11px] text-gray-700 leading-relaxed">
+            P2P is deferred to Phase 4 to prioritize adoption and compliance. Cashback, top-up, and family wallets come first.
+          </p>
+        </div>
+      </div>
+
+      <div className="px-5 pb-6">
+        <button
+          onClick={() => setScreen("wallet-dashboard")}
+          className="w-full bg-gray-100 text-haat-dark font-bold py-3.5 rounded-xl text-sm"
+        >
+          Back to wallet
+        </button>
+      </div>
+    </div>
+  );
+}
 export function FamilyWalletIntro({ hasFamilyWallet, childName, childLimit, setScreen }: any) {
   if (hasFamilyWallet) {
     return (
