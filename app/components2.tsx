@@ -291,7 +291,7 @@ export function WalletEmpty({ setScreen }: any) {
         <div className="w-full space-y-2 mb-6 max-w-xs">
           {[
             { Icon: Gift, text: "Get ₪5 instantly. No deposit needed." },
-            { Icon: Percent, text: "Earn 3% back — first 90 days, up to ₪50." },
+            { Icon: Percent, text: "Earn 3% cashback when you pay with HaatoPay." },
             { Icon: Users, text: "Create wallets for your kids." },
           ].map(({ Icon, text }, i) => (
             <div key={i} className="flex items-center gap-3 bg-white/5 rounded-xl px-4 py-3 backdrop-blur">
