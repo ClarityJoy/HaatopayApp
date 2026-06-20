@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { TRIVIA, PHRASES, MEMORY_ICONS } from "../data/trip";
+import { TRIVIA, PHRASES, MEMORY_ICONS, TRIP } from "../data/trip";
 import { ScreenHeader, Card, Pill } from "../components/ui";
 import { useLocal } from "../lib/store";
 import { Star, Volume2, RotateCcw } from "lucide-react";
@@ -26,7 +26,7 @@ export default function Games({ onBack }: { onBack: () => void }) {
       <div className="px-4 pt-3">
         <Card className="p-4 mb-4 bg-gradient-to-br from-amber-400 to-coral text-white flex items-center justify-between">
           <div>
-            <p className="text-white/80 text-sm">אספת עד עכשיו</p>
+            <p className="text-white/80 text-sm">הבולים של {TRIP.kidName}</p>
             <p className="font-display text-3xl">{totalStamps} בולים</p>
           </div>
           <span className="text-5xl">🏆</span>

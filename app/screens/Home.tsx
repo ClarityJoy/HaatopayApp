@@ -32,7 +32,8 @@ export default function Home({ go }: { go: (t: string, p?: any) => void }) {
 
         {phase === "before" && (
           <div className="mt-6">
-            <p className="text-white/80">עוד</p>
+            <p className="text-white text-lg">היי {TRIP.kidName}! 👋</p>
+            <p className="text-white/80 mt-3">עוד</p>
             <div className="flex items-end gap-2">
               <span className="font-display text-7xl leading-none">{daysUntilTrip()}</span>
               <span className="text-2xl mb-2">ימים</span>

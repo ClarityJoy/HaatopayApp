@@ -106,6 +106,7 @@ export type DocItem = {
 export const TRIP = {
   title: "תאילנד 2026",
   travelers: "אסף ושירה",
+  kidName: "שירה",
   startDate: "2026-07-03",
   endDate: "2026-07-17",
   totalDays: 15,
@@ -533,7 +534,7 @@ export type SeedExpense = { id: string; label: string; cat: ExpenseCat; amountIL
 export const SEED_EXPENSES: SeedExpense[] = [
   // טיסות
   { id: "xf1", label: "טיסות בינלאומיות (הלוך-חזור)", cat: "flights", amountILS: 5587.0 },
-  { id: "xf2", label: "טיסה פנימית — אבא (נקודות Etihad)", cat: "flights", amountILS: 11.21 },
+  { id: "xf2", label: "טיסה פנימית — אסף (נקודות Etihad)", cat: "flights", amountILS: 11.21 },
   { id: "xf3", label: "טיסה פנימית — שירה", cat: "flights", amountILS: 442.39 },
   { id: "xf4", label: "טיסה פנימית חזרה לבנגקוק", cat: "flights", amountILS: 410.29 },
   // מלונות
