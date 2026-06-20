@@ -15,6 +15,7 @@ import Weather from "./screens/Weather";
 import Documents from "./screens/Documents";
 import Emergency from "./screens/Emergency";
 import Games from "./screens/Games";
+import Packing from "./screens/Packing";
 
 type Tab = "home" | "itinerary" | "map" | "guides" | "more";
 const TABS: { id: Tab; label: string; Icon: any }[] = [
@@ -24,7 +25,7 @@ const TABS: { id: Tab; label: string; Icon: any }[] = [
   { id: "guides", label: "מדריכים", Icon: BookOpen },
   { id: "more", label: "עוד", Icon: LayoutGrid },
 ];
-const SUBS = ["hotels", "attractions", "budget", "currency", "weather", "documents", "emergency", "games"];
+const SUBS = ["hotels", "attractions", "budget", "currency", "weather", "documents", "emergency", "games", "packing"];
 
 const PHONE_W = 390;
 const PHONE_H = 844;
@@ -70,6 +71,7 @@ export default function App() {
       case "documents": return <Documents onBack={back} />;
       case "emergency": return <Emergency onBack={back} />;
       case "games": return <Games onBack={back} />;
+      case "packing": return <Packing onBack={back} />;
       default: return null;
     }
   };

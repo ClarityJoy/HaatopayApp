@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { DESTINATIONS, Destination } from "../data/trip";
 import { ScreenHeader, Card, SectionTitle } from "../components/ui";
+import { DestScene } from "../components/DestScene";
 import { mapsUrl } from "./itemIcon";
 import { Lightbulb, Info, ListChecks, MapPin } from "lucide-react";
 
@@ -13,8 +14,9 @@ export default function Guides() {
       <div className="pb-8">
         <ScreenHeader title={`${open.name} ${open.emoji}`} subtitle={open.tagline} onBack={() => setOpen(null)} />
         <div className="px-4 pt-3 space-y-4">
-          <div className="relative h-32 rounded-2xl bg-gradient-to-br from-teal-500 to-sky-500 overflow-hidden flex items-center justify-center">
-            <span className="text-7xl">{open.emoji}</span>
+          <div className="relative h-36 rounded-2xl overflow-hidden">
+            <DestScene id={open.id} className="absolute inset-0 w-full h-full" />
+            <span className="absolute bottom-2 left-3 text-5xl drop-shadow">{open.emoji}</span>
           </div>
 
           <Card className="p-4">
@@ -78,8 +80,9 @@ export default function Guides() {
         {DESTINATIONS.map((d) => (
           <Card key={d.id} className="overflow-hidden" onClick={() => setOpen(d)}>
             <div className="flex">
-              <div className="w-24 bg-gradient-to-br from-teal-500 to-sky-500 flex items-center justify-center text-5xl shrink-0">
-                {d.emoji}
+              <div className="relative w-28 shrink-0">
+                <DestScene id={d.id} className="absolute inset-0 w-full h-full" />
+                <span className="absolute bottom-1 left-2 text-3xl drop-shadow">{d.emoji}</span>
               </div>
               <div className="p-3 flex-1 min-w-0">
                 <h3 className="font-display text-lg text-ink">{d.name}</h3>
