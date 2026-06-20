@@ -77,6 +77,21 @@ export default function Home({ go }: { go: (t: string, p?: any) => void }) {
         </Card>
       </div>
 
+      {/* באנר קורס הצלילה של שירה */}
+      <div className="px-4 mt-3">
+        <Card
+          className="p-4 bg-gradient-to-br from-cyan-600 to-teal-700 text-white flex items-center gap-3"
+          onClick={() => go("diving")}
+        >
+          <span className="text-3xl">🤿</span>
+          <div className="flex-1">
+            <p className="font-display">הקורס של {TRIP.kidName}</p>
+            <p className="text-xs text-white/80">Open Water בקו טאו — לו"ז, סימני ידיים ויומן צלילות</p>
+          </div>
+          <span className="text-white/70">‹</span>
+        </Card>
+      </div>
+
       {/* לוז היום */}
       <div className="px-4 mt-5">
         <div className="flex items-center justify-between px-1 mb-2">

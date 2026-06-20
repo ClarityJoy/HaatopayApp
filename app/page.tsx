@@ -16,6 +16,7 @@ import Documents from "./screens/Documents";
 import Emergency from "./screens/Emergency";
 import Games from "./screens/Games";
 import Packing from "./screens/Packing";
+import Diving from "./screens/Diving";
 
 type Tab = "home" | "itinerary" | "map" | "guides" | "more";
 const TABS: { id: Tab; label: string; Icon: any }[] = [
@@ -25,7 +26,7 @@ const TABS: { id: Tab; label: string; Icon: any }[] = [
   { id: "guides", label: "מדריכים", Icon: BookOpen },
   { id: "more", label: "עוד", Icon: LayoutGrid },
 ];
-const SUBS = ["hotels", "attractions", "budget", "currency", "weather", "documents", "emergency", "games", "packing"];
+const SUBS = ["hotels", "attractions", "budget", "currency", "weather", "documents", "emergency", "games", "packing", "diving"];
 
 const PHONE_W = 390;
 const PHONE_H = 844;
@@ -56,7 +57,7 @@ export default function App() {
       case "home": return <Home go={go} />;
       case "itinerary": return <Itinerary go={go} />;
       case "map": return <MapScreen />;
-      case "guides": return <Guides />;
+      case "guides": return <Guides go={go} />;
       case "more": return <More go={go} />;
     }
   };
@@ -72,6 +73,7 @@ export default function App() {
       case "emergency": return <Emergency onBack={back} />;
       case "games": return <Games onBack={back} />;
       case "packing": return <Packing onBack={back} />;
+      case "diving": return <Diving onBack={back} />;
       default: return null;
     }
   };
