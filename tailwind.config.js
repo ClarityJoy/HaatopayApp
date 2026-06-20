@@ -4,17 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        haat: {
-          red: "#C8102E",
-          redLight: "#E63946",
-          yellow: "#F7C948",
-          yellowLight: "#FFE08A",
-          dark: "#1A1A1A",
-          cream: "#FFF9F0",
-        },
+        sand: "#FBF6EC",
+        ink: "#1C2B2A",
+        coral: "#F4623A",
       },
       fontFamily: {
-        serif: ["Cambria", "Georgia", "serif"],
+        display: ["var(--font-display)"],
+        sans: ["var(--font-sans)"],
+      },
+      lineClamp: {
+        2: "2",
       },
     },
   },
