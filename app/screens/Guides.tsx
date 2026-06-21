@@ -3,6 +3,7 @@ import { useState } from "react";
 import { DESTINATIONS, Destination } from "../data/trip";
 import { ScreenHeader, Card, SectionTitle } from "../components/ui";
 import { DestScene } from "../components/DestScene";
+import { PodcastCard } from "../components/PodcastCard";
 import { mapsUrl } from "./itemIcon";
 import { Lightbulb, Info, ListChecks, MapPin, ChevronLeft } from "lucide-react";
 
@@ -39,6 +40,8 @@ export default function Guides({ go }: { go: (t: string, p?: any) => void }) {
             </div>
             <p className="text-sm text-ink/70 leading-relaxed">{open.history}</p>
           </Card>
+
+          <PodcastCard title={open.podcast.title} script={open.podcast.script} />
 
           <SectionTitle>
             <span className="flex items-center gap-1.5"><Lightbulb className="w-4 h-4" /> ידעת ש…?</span>
