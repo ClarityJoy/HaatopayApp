@@ -59,6 +59,9 @@ export default function Home({ go }: { go: (t: string, p?: any) => void }) {
           <div className="mt-6">
             <h1 className="font-display text-4xl">ברוכים השבים! 🇮🇱</h1>
             <p className="text-white/80 mt-2">מקווים שנהניתם בתאילנד. הזיכרונות נשארים כאן.</p>
+            <button onClick={() => go("memories")} className="mt-4 bg-white/15 rounded-xl px-4 py-2 text-sm">
+              📸 לצפייה בזיכרונות
+            </button>
           </div>
         )}
       </div>
@@ -146,6 +149,8 @@ export default function Home({ go }: { go: (t: string, p?: any) => void }) {
             { t: "תקציב", e: "📊", go: "budget" },
             { t: "מסמכים", e: "🗂️", go: "documents" },
             { t: "חירום", e: "🆘", go: "emergency" },
+            { t: "אריזה", e: "🧳", go: "packing" },
+            { t: "זיכרונות", e: "📸", go: "memories" },
           ].map((s) => (
             <button
               key={s.go}
